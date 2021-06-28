@@ -1,27 +1,24 @@
-from flask import Flask
-from models import db
+from flask import Flask, render_template, request
+from models import db, Classe
 
 app = Flask(__name__)
 
-POSTGRES = {
-    'user': 'postgres',
-    'pw': 'root',
-    'db': 'timeManagement',
-    'host': 'localhost',
-    'port': '5432',
-}
-
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:root@localhost/tutore'
 db.init_app(app)
 
 @app.route('/')
-def index():
-    return "Hello world !"
-
-@app.route('/test')
-def test():
+def listeClasses():
     return render_template('melissa.html')
+
+@app.route('/nouvelleClasse', methods=['POST'])
+def nouvelleClasse():
+    if request.method == 'POST':
+        nomDeLaClasse = request.form['nom']
+        print("La valeur est : " + nomDeLaClasse)
+        db.session.add(Classe(nom=nomDeLaClasse))
+        db.session.commit
+        return "Sauvegarde reussie"
 
 if __name__ == "__main__":
     app.run()

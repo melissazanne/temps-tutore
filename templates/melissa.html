@@ -4,9 +4,121 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+    <title>PAGE D'ADMINISTRATION</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        #customers {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: center;
+        }
+        
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+          background-color: #04AA6D;
+          color: white;
+        }
+        </style>
 </head>
 <body>
-    <h1>Hello, i'm melissa and this is my first webpage in flask</h1>
+    <div class="w3-bar w3-black">
+        <span style="font-size: x-large; font-weight: bold;" class="w3-bar-item ">APPmeli</span> 
+        <a href="#" style="font-size: x-large;" class="w3-bar-item w3-button">Acceuil</a>
+    </div>
+
+    <div class="w3-container">
+        <br>
+        <span style="font-size: x-large;">Liste des classes </span>
+        <button style="font-size: x-large;" class="w3-bar-item w3-button w3-right" onclick="document.getElementById('id01').style.display='block'">Ajouter</button>
+
+        <table id="customers">
+            <tr>
+                <th>Nom</th>
+                <th>Option</th>
+                
+            </tr>
+            <tr>
+                <td>LPT1</td>
+                <td>
+                    <a href="#" class="w3-button w3-green" >Sessions</a>
+                    <a href="#" class="w3-button w3-blue" >Modifier</a>
+                    <a href="#" class="w3-button w3-red" >Supprimers</a>
+                </td>
+            </tr>
+            <tr>
+                <td>LPTI2</td>
+                <td>
+                <a href="#" class="w3-button w3-green" >Sessions</a>
+                <a href="#" class="w3-button w3-green" >Modifier</a>
+                <a href="#" class="w3-button w3-green" >Supprimers</a>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>LPTI DAR</td>
+                <td>
+                <a href="#" class="w3-button w3-green" >Sessions</a>
+                <a href="#" class="w3-button w3-green" >Modifier</a>
+                <a href="#" class="w3-button w3-green" >Supprimers</a>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>LPTI RESEAU</td>
+                <td>
+                <a href="#" class="w3-button w3-green" >Sessions</a>
+                <a href="#" class="w3-button w3-green" >Modifier</a>
+                <a href="#" class="w3-button w3-green" >Supprimers</a>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>LPTI SECURITE</td>
+                <td>
+                <a href="#" class="w3-button w3-green" >Sessions</a>
+                <a href="#" class="w3-button w3-green" >Modifier</a>
+                <a href="#" class="w3-button w3-green" >Supprimers</a>
+                </td>
+            </tr>
+            <tr>
+                <td>MASTER 1</td>
+                <td>
+                <a href="#" class="w3-button w3-green" >Sessions</a>
+                <a href="#" class="w3-button w3-green" >Modifier</a>
+                <a href="#" class="w3-button w3-green" >Supprimers</a>
+                </td>
+            </tr>
+            </table>
+    </div>
+
+    <div class="w3-container">
+        <div id="id01" class="w3-modal">
+          <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+      
+            <div class="w3-center"><br>
+              <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+            </div>
+      
+            <form class="w3-container" action="/nouvelleClasse" method="POST">
+              <div class="w3-section">
+                <label><b>Nom de la classe</b></label>
+                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter le nom" name="nom" required>
+                <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Enregistrer</button>
+              </div>
+            </form>
+      
+          </div>
+        </div>
+      </div>
+
 </body>
 </html>

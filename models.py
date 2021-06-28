@@ -1,10 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-import logging as lg
 
 db=SQLAlchemy()
-
-# Create database connection object
-#engine = create_engine('postgresql+psycopg2://postgres:root@localhost/tutore')
 
 class Classe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -35,8 +31,3 @@ class Session(db.Model):
         self.nom =nom
         self.fin = fin
         self.debut = debut
-
-#def initDatabase():
-#    Base.metadata.drop_all(engine)
-#    Base.metadata.create_all(engine)
-#    lg.warning('Database is ok')
