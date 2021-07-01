@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>PAGE D'ADMINISTRATION</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+  <div class="w3-bar w3-black">
+      <span style="font-size: x-large; font-weight: bold;" class="w3-bar-item ">APPmeli</span> 
+      <a href="/" style="font-size: x-large;" class="w3-bar-item w3-button">Acceuil</a>
+  </div>
+
+  <div class="w3-container" style="text-align: center;">
+      <br>
+      <span style="font-size: x-large;">Mise a jour classe </span>
+  </div>
+  <br>
+  <div class="w3-container">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+        <form class="w3-container" method="POST" action="/modifierClasse">
+          <div class="w3-section">
+            <label><b>Nom de la classe</b></label>
+            <input type="hidden" name="id" value="{{classToBeUpdated.id}}">
+            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter le nom" name="nom" value="{{classToBeUpdated.nom}}" required>
+            <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Mettre à jour</button>
+          </div>
+        </form>
+      </div>
+  </div>
+
+</body>
+</html>
