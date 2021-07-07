@@ -1,11 +1,22 @@
 from flask import Flask, render_template, request, redirect
-from models import db, Classe, Session
+from models import db, Classe, Session, classes_schema ,sessions_schema
 
 app = Flask(__name__)
 
 app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:root@localhost/tutore'
 db.init_app(app)
+
+# API for Ionic App
+@app.route("/api/classes")
+def listOfClass():
+    classes = Classe.query.all()
+    return classes_schema.jsonify(classes)
+
+@app.route("/api/sessions/<classeID>")
+def listOfSessionsByClasseID(classeID):
+    classe = Classe.query.filter_by(id=classeID).first()
+    return sessions_schema.jsonify(classe.sessions)
 
 # Views for CRUD Manager interface
 @app.route("/")

@@ -1,6 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 
 db=SQLAlchemy()
+ma=Marshmallow()
+
 
 class Classe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -31,3 +34,16 @@ class Session(db.Model):
         self.nom =nom
         self.fin = fin
         self.debut = debut
+
+class ClasseSchema(ma.Schema):
+    class Meta:
+        fields = ("id", "nom")
+
+class SessionSchema(ma.Schema):
+    class Meta:
+        fields = ("nom" , "fin", "debut" , "classe_id")       
+
+classe_schema = ClasseSchema()
+classes_schema = ClasseSchema(many=True)
+session_schema = SessionSchema()
+sessions_schema = SessionSchema(many=True)
