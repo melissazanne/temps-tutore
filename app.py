@@ -1,19 +1,27 @@
-from flask import Flask, render_template, request, redirect
+import logging
+
+from flask import Flask, render_template, request, redirect, jsonify
+from flask_cors import CORS
 from models import db, Classe, Session, classes_schema ,sessions_schema
 
 app = Flask(__name__)
 
 app.config['DEBUG'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:root@localhost/tutore'
 db.init_app(app)
 
+logging.basicConfig(level=logging.INFO)
+logging.getLogger('flask_cors').level = logging.DEBUG
+CORS(app)
+
 # API for Ionic App
-@app.route("/api/classes")
+@app.route("/api/classes", methods=["GET"])
 def listOfClass():
     classes = Classe.query.all()
     return classes_schema.jsonify(classes)
 
-@app.route("/api/sessions/<classeID>")
+@app.route("/api/sessions/<classeID>", methods=["GET"])
 def listOfSessionsByClasseID(classeID):
     classe = Classe.query.filter_by(id=classeID).first()
     return sessions_schema.jsonify(classe.sessions)
